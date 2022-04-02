@@ -9,6 +9,9 @@ import java.util.List;
 
 public interface StudentService {
 
+
+    List<Student> doSearch(Student student);
+
     List<Student> getStudents();
 
     Student createStudent(Student student);

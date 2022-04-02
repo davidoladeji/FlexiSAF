@@ -1,15 +1,15 @@
 package com.davidoladeji.flexisaf.model;
 
+import com.davidoladeji.flexisaf.util.FullnameGenerated;
 import com.davidoladeji.flexisaf.util.MatricGenerated;
-import com.davidoladeji.flexisaf.util.MatricGenerator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.hibernate.annotations.*;
-import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.GeneratorType;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -29,18 +29,6 @@ public class Student implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "my_sequence_name")
     private long Id;
 
-    /*@Id
-    @JsonProperty("matric_number")
-   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_sequence_name")
-    @GenericGenerator(
-            name = "my_sequence_name",
-            strategy = "com.davidoladeji.flexisaf.util.MatricGenerator",
-            parameters = {
-                    @Parameter(name = MatricGenerator.INCREMENT_PARAM, value = "1"),
-                    @Parameter(name = MatricGenerator.VALUE_PREFIX_PARAMETER, value = "FLEXISAF/"),
-                    @Parameter(name = MatricGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d") })
-    @Column(name = "matric_number", updatable = true)*/
-
     @GeneratorType(type = MatricGenerated.class, when = GenerationTime.INSERT)
     @Column(name = "matric_number")
     private String matricNumber;
@@ -58,8 +46,11 @@ public class Student implements Serializable {
     @JsonProperty("other_name")
     private String otherName;
 
+    @Column(name = "email_adddress")
+    @JsonProperty("email_adddress")
+    private String emailAddress;
 
-    @GeneratorType(type = MatricGenerated.class, when = GenerationTime.INSERT)
+    @GeneratorType(type = FullnameGenerated.class, when = GenerationTime.ALWAYS)
     @Column(name = "full_name")
     @JsonProperty("full_name")
     private String fullName;

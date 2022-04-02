@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import java.security.SecureRandom;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 @Component
 public class StudentLoader  implements CommandLineRunner {
@@ -34,15 +36,17 @@ public class StudentLoader  implements CommandLineRunner {
 
 
     private void createStudents() throws ParseException {
-
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-M-d", Locale.ENGLISH);
+        formatter.parse("2001-10-29");
         if (studentRepository.count() == 0) {
             studentRepository.save(
                     Student.builder()
                             .firstName("David")
                             .lastName("Oladeji")
                             .otherName("Oluwayanmi")
+                            .emailAddress("david.oladeji.daveola@gmail.com")
                             .gender(randomEnum(GenderEnum.class).toString())
-                            .dateOfBirth(RandomDateOfBirth.randDob())
+                            .dateOfBirth(formatter.parse("2001-10-29"))
                             .created_by(randomEnum(CreatorEnum.class).toString())
                             .build()
             );
@@ -51,8 +55,9 @@ public class StudentLoader  implements CommandLineRunner {
                             .firstName("Femi")
                             .lastName("Arowosafe")
                             .otherName("Stephen")
+                            .emailAddress("david.oladeji.daveola@gmail.com")
                             .gender(randomEnum(GenderEnum.class).toString())
-                            .dateOfBirth(RandomDateOfBirth.randDob())
+                            .dateOfBirth(formatter.parse("2001-10-30"))
                             .created_by(randomEnum(CreatorEnum.class).toString())
                             .build()
             );
@@ -61,6 +66,7 @@ public class StudentLoader  implements CommandLineRunner {
                             .firstName("Hammed")
                             .lastName("Abu")
                             .otherName("Chukwu")
+                            .emailAddress("david.oladeji.daveola@gmail.com")
                             .gender(randomEnum(GenderEnum.class).toString())
                             .dateOfBirth(RandomDateOfBirth.randDob())
                             .created_by(randomEnum(CreatorEnum.class).toString())
@@ -71,6 +77,7 @@ public class StudentLoader  implements CommandLineRunner {
                             .firstName("Aisha")
                             .lastName("Bello")
                             .otherName("Esther")
+                            .emailAddress("david.oladeji.daveola@gmail.com")
                             .gender(randomEnum(GenderEnum.class).toString())
                             .dateOfBirth(RandomDateOfBirth.randDob())
                             .created_by(randomEnum(CreatorEnum.class).toString())
