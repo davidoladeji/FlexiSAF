@@ -1,9 +1,7 @@
 package com.davidoladeji.flexisaf.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.datanucleus.api.jpa.annotations.ColumnPosition;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -26,7 +24,6 @@ public class Department {
 
 
     @Id
-    @ColumnPosition(0)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false, nullable = false)
     private long id;
